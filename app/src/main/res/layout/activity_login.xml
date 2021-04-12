@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Account.LoginActivity"
     android:orientation="vertical">
 
@@ -21,5 +22,19 @@
         android:textColor="@color/colorAzulOscuro"
         android:textSize="30dp"
         android:textStyle="bold"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/imgusuario">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Usuario"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>
