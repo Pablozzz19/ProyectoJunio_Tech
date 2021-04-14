@@ -42,7 +42,7 @@
 
     <EditText
         android:id="@+id/etLoginLock"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/custom_input"
@@ -50,11 +50,21 @@
         android:drawableLeft="@drawable/ic_lock"
         android:drawablePadding="12dp"
         android:drawableStart="@drawable/custom_lock_icon"
-        android:hint="Email"
+        android:hint="Contraseña"
         android:inputType="numberPassword"
         android:paddingEnd="12dp"
         android:paddingStart="12dp"
         android:textSize="20dp"/>
+    
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/custom_button"
+        android:ems="10"
+        android:text="Login"
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
