@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Account.LoginActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="40dp">
 
     <ImageView
         android:layout_gravity="center"
@@ -23,18 +24,36 @@
         android:textSize="30dp"
         android:textStyle="bold"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
-        android:layout_gravity="center"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        app:startIconDrawable="@drawable/imgusuario">
+    <EditText
+        android:id="@+id/etLoginEmail"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawablePadding="12dp"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:textSize="20dp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Usuario"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:id="@+id/etLoginLock"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:drawableLeft="@drawable/ic_lock"
+        android:drawablePadding="12dp"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:hint="Email"
+        android:inputType="numberPassword"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:textSize="20dp"/>
 
 </LinearLayout>
