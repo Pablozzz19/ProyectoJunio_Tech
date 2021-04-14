@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Account.LoginActivity"
+    tools:context=".Account.CrearCuentaActivity"
     android:orientation="vertical"
     android:padding="40dp">
 
@@ -19,13 +19,13 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
+        android:text="CREAR CUENTA"
         android:textColor="@color/colorAzulOscuro"
         android:textSize="30dp"
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/etLoginEmail"
+        android:id="@+id/etCrearEmail"
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -41,7 +41,7 @@
         android:textSize="20dp"/>
 
     <EditText
-        android:id="@+id/etLoginLock"
+        android:id="@+id/etCrearLock"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -55,34 +55,32 @@
         android:paddingEnd="12dp"
         android:paddingStart="12dp"
         android:textSize="20dp"/>
-    
+
+    <RadioGroup
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USUARIO"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMPRESA"/>
+
+    </RadioGroup>
+
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnCrearCuenta"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@drawable/custom_button"
         android:ems="10"
-        android:text="Login"
+        android:text="Crear Cuenta"
         android:textColor="@android:color/white"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿No tienes una Cuenta?"/>
-
-        <TextView
-            android:id="@+id/tvRegistrarse"
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Registrarse."
-            android:textColor="@color/colorAzulOscuro"/>
-
-    </LinearLayout>
 
 </LinearLayout>
