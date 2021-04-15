@@ -8,6 +8,9 @@ android {
         applicationId "com.example.tech"
         minSdkVersion 16
         targetSdkVersion 29
+
+        vectorDrawables.useSupportLibrary = true
+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -26,10 +29,12 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     api 'com.google.android.material:material:1.4.0-alpha02'
 
     implementation platform('com.google.firebase:firebase-bom:27.0.0')
     implementation 'com.google.firebase:firebase-analytics'
+
+    implementation 'com.google.android.material:material:1.4.0-alpha02'
 }
