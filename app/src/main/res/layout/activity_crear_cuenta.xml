@@ -62,11 +62,13 @@
         android:layout_height="wrap_content">
 
         <RadioButton
+            android:id="@+id/rbCrearUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="USUARIO"/>
 
         <RadioButton
+            android:id="@+id/rbCrearEmpresa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EMPRESA"/>
