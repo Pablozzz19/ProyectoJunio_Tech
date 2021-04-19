@@ -19,10 +19,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CrearCuentaActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore fStore;
     private Button btnCrearCuenta;
     private EditText etCrearEmail, etCrearLock;
     private RadioButton rbCrearUsuario, rbCrearEmpresa;
@@ -33,6 +39,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crear_cuenta);
 
         mAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
         btnCrearCuenta = (Button)findViewById(R.id.btnCrearCuenta);
         etCrearEmail = (EditText)findViewById(R.id.etCrearEmail);
@@ -89,14 +96,12 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
                             if (rbCrearUsuario.isChecked()) {
 
-                                Usuario usuario = new Usuario(email);
-
-                                FirebaseDatabase.getInstance().getReference("Usuarios")
-                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                        .setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                DocumentReference documentReference = fStore.collection("Usuarios").document(mAuth.getCurrentUser().getUid());
+                                Map<String, Object> mUsuario = new HashMap<>();
+                                mUsuario.put("email", email);
+                                documentReference.set(mUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-
                                         if (task.isSuccessful()) {
                                             Toast.makeText(CrearCuentaActivity.this, "Usuario registrado correctamenete!", Toast.LENGTH_LONG).show();
                                         } else {
@@ -107,14 +112,12 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
                             } else {
 
-                                Empresa empresa = new Empresa(email);
-
-                                FirebaseDatabase.getInstance().getReference("Empresas")
-                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                        .setValue(empresa).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                DocumentReference documentReference = fStore.collection("Empresas").document(mAuth.getCurrentUser().getUid());
+                                Map<String, Object> mEmpresa = new HashMap<>();
+                                mEmpresa.put("email", email);
+                                documentReference.set(mEmpresa).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-
                                         if (task.isSuccessful()) {
                                             Toast.makeText(CrearCuentaActivity.this, "Empresa registrada correctamenete!", Toast.LENGTH_LONG).show();
                                         } else {
