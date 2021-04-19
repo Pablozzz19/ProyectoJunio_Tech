@@ -1,5 +1,6 @@
 package com.example.tech.Account;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,9 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.example.tech.Clases.Usuario;
 import com.example.tech.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class CrearCuentaActivity extends AppCompatActivity {
 
@@ -42,7 +49,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
     // Método para registrar un Usuario o una Empresa.
     private void registrarUsuario() {
-        String email = etCrearEmail.getText().toString().trim();
+        final String email = etCrearEmail.getText().toString().trim();
         String password = etCrearLock.getText().toString().trim();
 
         // Si no a puesto bien o está vacío el email, lo notificamos.
@@ -70,5 +77,34 @@ public class CrearCuentaActivity extends AppCompatActivity {
             etCrearLock.requestFocus();
             return;
         }
+
+        // Creación del Usuario o la Empresa.
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (task.isSuccessful()) {
+                            Usuario usuario = new Usuario(email);
+
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(CrearCuentaActivity.this, "Usuario registrado correctamenete!", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(CrearCuentaActivity.this, "Fallo al crear usuario.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        } else {
+                            Toast.makeText(CrearCuentaActivity.this, "Usuario!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
     }
 }
