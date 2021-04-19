@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.tech.Clases.Empresa;
 import com.example.tech.Clases.Usuario;
 import com.example.tech.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -78,30 +79,50 @@ public class CrearCuentaActivity extends AppCompatActivity {
             return;
         }
 
-        // Creación del Usuario o la Empresa.
+        // Registro del Usuario o la Empresa.
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            Usuario usuario = new Usuario(email);
 
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                            if (rbCrearUsuario.isChecked()) {
 
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(CrearCuentaActivity.this, "Usuario registrado correctamenete!", Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Toast.makeText(CrearCuentaActivity.this, "Fallo al crear usuario.", Toast.LENGTH_LONG).show();
+                                Usuario usuario = new Usuario(email);
+
+                                FirebaseDatabase.getInstance().getReference("Usuarios")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(CrearCuentaActivity.this, "Usuario registrado correctamenete!", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(CrearCuentaActivity.this, "Error al crear el usuario.", Toast.LENGTH_LONG).show();
+                                        }
                                     }
-                                }
-                            });
-                        } else {
-                            Toast.makeText(CrearCuentaActivity.this, "Usuario!", Toast.LENGTH_LONG).show();
+                                });
+
+                            } else {
+
+                                Empresa empresa = new Empresa(email);
+
+                                FirebaseDatabase.getInstance().getReference("Empresas")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(empresa).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(CrearCuentaActivity.this, "Empresa registrada correctamenete!", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(CrearCuentaActivity.this, "Error al crear la empresa.", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+                            }
                         }
                     }
                 });

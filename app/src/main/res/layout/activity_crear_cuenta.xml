@@ -61,16 +61,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Usuario :"
+            android:textColor="@color/colorAzulOscuro"/>
+
         <RadioButton
             android:id="@+id/rbCrearUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorAzulOscuro"
+            android:checked="true"
             android:text="USUARIO"/>
 
         <RadioButton
             android:id="@+id/rbCrearEmpresa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorAzulOscuro"
             android:text="EMPRESA"/>
 
     </RadioGroup>
