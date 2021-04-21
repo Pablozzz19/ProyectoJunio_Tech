@@ -56,6 +56,27 @@
         android:paddingStart="12dp"
         android:textSize="20dp"/>
 
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleButton"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <Button
+            android:id="@+id/btnUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Usuario"
+            style="?attr/materialButtonOutlinedStyle"/>
+
+        <Button
+            android:id="@+id/btnEmpresa"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Empresa"
+            style="?attr/materialButtonOutlinedStyle"/>
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
     <RadioGroup
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
