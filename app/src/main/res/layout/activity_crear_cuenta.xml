@@ -24,37 +24,52 @@
         android:textSize="30dp"
         android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/etCrearEmail"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:drawableLeft="@drawable/ic_email"
-        android:drawablePadding="12dp"
-        android:drawableStart="@drawable/custom_email_icon"
+        android:layout_height="wrap_content"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:paddingEnd="12dp"
-        android:paddingStart="12dp"
-        android:textSize="20dp"/>
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    <EditText
-        android:id="@+id/etCrearLock"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCrearEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_email"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/custom_email_icon"
+            android:inputType="textEmailAddress"
+            android:textSize="20dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:drawableLeft="@drawable/ic_lock"
-        android:drawablePadding="12dp"
-        android:drawableStart="@drawable/custom_lock_icon"
+        android:layout_height="wrap_content"
         android:hint="Contraseña"
-        android:inputType="numberPassword"
-        android:paddingEnd="12dp"
-        android:paddingStart="12dp"
-        android:textSize="20dp"/>
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:endIconMode="password_toggle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCrearLock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_lock"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/custom_lock_icon"
+            android:inputType="textPassword"
+            android:textSize="20dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/toggleButton"

@@ -60,7 +60,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         final String email = etCrearEmail.getText().toString().trim();
         String password = etCrearLock.getText().toString().trim();
 
-        // Si no a puesto bien o está vacío el email, lo notificamos.
+        // Si no ha puesto bien o está vacío el email, lo notificamos.
         if (email.isEmpty()) {
             etCrearEmail.setError("Introduce un Email.");
             etCrearEmail.requestFocus();
@@ -99,6 +99,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
                                 DocumentReference documentReference = fStore.collection("Usuarios").document(mAuth.getCurrentUser().getUid());
                                 Map<String, Object> mUsuario = new HashMap<>();
                                 mUsuario.put("email", email);
+                                mUsuario.put("bAux", false);
                                 documentReference.set(mUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
@@ -115,6 +116,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
                                 DocumentReference documentReference = fStore.collection("Empresas").document(mAuth.getCurrentUser().getUid());
                                 Map<String, Object> mEmpresa = new HashMap<>();
                                 mEmpresa.put("email", email);
+                                mEmpresa.put("bAux", false);
                                 documentReference.set(mEmpresa).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
