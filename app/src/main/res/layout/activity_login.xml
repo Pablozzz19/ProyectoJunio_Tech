@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGIN"
-        android:textColor="@color/colorAzulOscuro"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="30dp"
         android:textStyle="bold"/>
 
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Regístrate."
-            android:textColor="@color/colorAzulOscuro"/>
+            android:textColor="@color/colorPrimaryDark"/>
 
     </LinearLayout>
 
