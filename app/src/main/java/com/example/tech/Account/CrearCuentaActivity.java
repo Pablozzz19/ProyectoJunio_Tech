@@ -93,56 +93,62 @@ public class CrearCuentaActivity extends AppCompatActivity {
         }
 
         // Registro del Usuario o la Empresa.
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+        // Comprobar que hay un tipo de usuario seleccionado.
+        final int selectedButtonId = btgTipoUsuario.getCheckedButtonId();
 
-                        if (task.isSuccessful()) {
+        if (selectedButtonId == btnUsuario.getId() || selectedButtonId == btnEmpresa.getId()) {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            int selectedButtonId = btgTipoUsuario.getCheckedButtonId();
-                            //if (rbCrearUsuario.isChecked()) {
-                            if (selectedButtonId == btnUsuario.getId()) {
+                            if (task.isSuccessful()) {
 
-                                DocumentReference documentReference = fStore.collection("Usuarios").document(mAuth.getCurrentUser().getUid());
-                                Map<String, Object> mUsuario = new HashMap<>();
-                                mUsuario.put("email", email);
-                                mUsuario.put("bAux", false);
-                                documentReference.set(mUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(CrearCuentaActivity.this, "Usuario registrado correctamenete!", Toast.LENGTH_LONG).show();
-                                        } else {
-                                            Toast.makeText(CrearCuentaActivity.this, "Error al crear el usuario.", Toast.LENGTH_LONG).show();
+                                //int selectedButtonId = btgTipoUsuario.getCheckedButtonId();
+                                //if (rbCrearUsuario.isChecked()) {
+                                if (selectedButtonId == btnUsuario.getId()) {
+
+                                    DocumentReference documentReference = fStore.collection("Usuarios").document(mAuth.getCurrentUser().getUid());
+                                    Map<String, Object> mUsuario = new HashMap<>();
+                                    mUsuario.put("email", email);
+                                    mUsuario.put("bAux", false);
+                                    documentReference.set(mUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(CrearCuentaActivity.this, "Usuario registrado correctamenete!", Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Toast.makeText(CrearCuentaActivity.this, "Error al crear el usuario.", Toast.LENGTH_LONG).show();
+                                            }
                                         }
-                                    }
-                                });
+                                    });
 
-                            } else if (selectedButtonId == btnEmpresa.getId()){
+                                } else if (selectedButtonId == btnEmpresa.getId()){
 
-                                DocumentReference documentReference = fStore.collection("Empresas").document(mAuth.getCurrentUser().getUid());
-                                Map<String, Object> mEmpresa = new HashMap<>();
-                                mEmpresa.put("email", email);
-                                mEmpresa.put("bAux", false);
-                                documentReference.set(mEmpresa).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(CrearCuentaActivity.this, "Empresa registrada correctamenete!", Toast.LENGTH_LONG).show();
-                                        } else {
-                                            Toast.makeText(CrearCuentaActivity.this, "Error al crear la empresa.", Toast.LENGTH_LONG).show();
+                                    DocumentReference documentReference = fStore.collection("Empresas").document(mAuth.getCurrentUser().getUid());
+                                    Map<String, Object> mEmpresa = new HashMap<>();
+                                    mEmpresa.put("email", email);
+                                    mEmpresa.put("bAux", false);
+                                    documentReference.set(mEmpresa).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(CrearCuentaActivity.this, "Empresa registrada correctamenete!", Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Toast.makeText(CrearCuentaActivity.this, "Error al crear la empresa.", Toast.LENGTH_LONG).show();
+                                            }
                                         }
-                                    }
-                                });
+                                    });
 
-                            } else {
-                                Toast.makeText(CrearCuentaActivity.this, "ERROR. Por favor elija un el tipo de cuenta.", Toast.LENGTH_LONG).show();
+                                }
+
                             }
-
                         }
-                    }
-                });
+                    });
+        } else {
+            Toast.makeText(CrearCuentaActivity.this, "ERROR. Por favor elija un el tipo de cuenta.", Toast.LENGTH_LONG).show();
+        }
+
 
     }
 }
