@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.tech.R;
 
-public class PrimerLoginActivity extends AppCompatActivity {
+public class PrimerLoginUsuarioActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
