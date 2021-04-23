@@ -16,6 +16,7 @@ import com.example.tech.Clases.Usuario;
 import com.example.tech.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,9 +30,10 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore fStore;
-    private Button btnCrearCuenta;
+    private Button btnCrearCuenta, btnUsuario, btnEmpresa;
     private EditText etCrearEmail, etCrearLock;
-    private RadioButton rbCrearUsuario, rbCrearEmpresa;
+    private MaterialButtonToggleGroup btgTipoUsuario;
+    //private RadioButton rbCrearUsuario, rbCrearEmpresa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,12 @@ public class CrearCuentaActivity extends AppCompatActivity {
         btnCrearCuenta = (Button)findViewById(R.id.btnCrearCuenta);
         etCrearEmail = (EditText)findViewById(R.id.etCrearEmail);
         etCrearLock = (EditText)findViewById(R.id.etCrearLock);
-        rbCrearUsuario = (RadioButton)findViewById(R.id.rbCrearUsuario);
-        rbCrearEmpresa = (RadioButton)findViewById(R.id.rbCrearEmpresa);
+
+        btgTipoUsuario = (MaterialButtonToggleGroup)findViewById(R.id.btgTipoUsuario);
+        btnUsuario = (Button)findViewById(R.id.btnUsuario);
+        btnEmpresa = (Button)findViewById(R.id.btnEmpresa);
+        //rbCrearUsuario = (RadioButton)findViewById(R.id.rbCrearUsuario);
+        //rbCrearEmpresa = (RadioButton)findViewById(R.id.rbCrearEmpresa);
 
         btnCrearCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +100,9 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
-                            if (rbCrearUsuario.isChecked()) {
+                            int selectedButtonId = btgTipoUsuario.getCheckedButtonId();
+                            //if (rbCrearUsuario.isChecked()) {
+                            if (selectedButtonId == btnUsuario.getId()) {
 
                                 DocumentReference documentReference = fStore.collection("Usuarios").document(mAuth.getCurrentUser().getUid());
                                 Map<String, Object> mUsuario = new HashMap<>();
@@ -111,7 +119,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
                                     }
                                 });
 
-                            } else {
+                            } else if (selectedButtonId == btnEmpresa.getId()){
 
                                 DocumentReference documentReference = fStore.collection("Empresas").document(mAuth.getCurrentUser().getUid());
                                 Map<String, Object> mEmpresa = new HashMap<>();
@@ -127,7 +135,11 @@ public class CrearCuentaActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
+
+                            } else {
+                                Toast.makeText(CrearCuentaActivity.this, "ERROR. Por favor elija un el tipo de cuenta.", Toast.LENGTH_LONG).show();
                             }
+
                         }
                     }
                 });
