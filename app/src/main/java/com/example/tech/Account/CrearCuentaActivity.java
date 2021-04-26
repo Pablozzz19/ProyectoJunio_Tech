@@ -50,8 +50,6 @@ public class CrearCuentaActivity extends AppCompatActivity {
         btgTipoUsuario = (MaterialButtonToggleGroup)findViewById(R.id.btgTipoUsuario);
         btnUsuario = (Button)findViewById(R.id.btnUsuario);
         btnEmpresa = (Button)findViewById(R.id.btnEmpresa);
-        //rbCrearUsuario = (RadioButton)findViewById(R.id.rbCrearUsuario);
-        //rbCrearEmpresa = (RadioButton)findViewById(R.id.rbCrearEmpresa);
 
         btnCrearCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,8 +102,6 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
 
-                                //int selectedButtonId = btgTipoUsuario.getCheckedButtonId();
-                                //if (rbCrearUsuario.isChecked()) {
                                 if (selectedButtonId == btnUsuario.getId()) {
 
                                     DocumentReference documentReference = fStore.collection("Usuarios").document(mAuth.getCurrentUser().getUid());
