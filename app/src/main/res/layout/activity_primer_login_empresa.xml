@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Account.PrimerLoginUsuarioActivity"
+    tools:context=".Account.PrimerLoginEmpresaActivity"
     android:orientation="vertical"
     android:padding="40dp">
 
@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="USUARIO BÁSICO"
+        android:text="EMPRESA"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="30dp"
         android:textStyle="bold"/>
@@ -45,13 +45,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCrearNombre"
+                    android:id="@+id/etCrearNombreEmp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_nombre"
+                    android:drawableLeft="@drawable/ic_empresa"
                     android:drawablePadding="12dp"
-                    android:drawableStart="@drawable/custom_nombre_icon"
-                    android:inputType="textPersonName"
+                    android:drawableStart="@drawable/custom_empresa_icon"
+                    android:inputType="text"
                     android:textSize="20dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -60,7 +60,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Apellidos"
+                android:hint="Sede"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -68,38 +68,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCrearApellidos"
+                    android:id="@+id/etCrearSedeEmp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_nombre"
+                    android:drawableLeft="@drawable/ic_sede"
                     android:drawablePadding="12dp"
-                    android:drawableStart="@drawable/custom_nombre_icon"
-                    android:inputType="textPersonName"
-                    android:textSize="20dp"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Fecha Nacimiento"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCrearFecha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:drawableLeft="@drawable/ic_fecha"
-                    android:drawablePadding="12dp"
-                    android:drawableStart="@drawable/custom_fecha_icon"
-                    android:focusable="false"
-                    android:inputType="date"
+                    android:drawableStart="@drawable/custom_sede_icon"
+                    android:inputType="text"
                     android:textSize="20dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -116,13 +91,36 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCrearTelefono"
+                    android:id="@+id/etCrearTelefonoEmp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="12dp"
                     android:drawableStart="@drawable/custom_phone_icon"
                     android:inputType="phone"
+                    android:textSize="20dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Número Empleados"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCrearEmpleadosEmp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_nombre"
+                    android:drawablePadding="12dp"
+                    android:drawableStart="@drawable/custom_nombre_icon"
+                    android:inputType="number"
                     android:textSize="20dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -141,7 +139,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCrearDescripcion"
+                    android:id="@+id/etCrearDescripcionEmp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_descripcion"
@@ -155,7 +153,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnComenzarUsuario"
+                android:id="@+id/btnComenzarEmpresa"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"

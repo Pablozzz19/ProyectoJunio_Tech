@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Account.PrimerLoginUsuarioActivity"></activity>
+        <activity android:name=".Account.PrimerLoginEmpresaActivity"></activity>
+        <activity android:name=".Account.PrimerLoginUsuarioActivity" />
         <activity android:name=".Account.CrearCuentaActivity" />
         <activity android:name=".Account.LoginActivity">
             <intent-filter>

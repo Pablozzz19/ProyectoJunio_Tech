@@ -114,4 +114,12 @@
         android:textSize="15dp"
         android:textColor="@android:color/white"/>
 
+    <ProgressBar
+        android:id="@+id/progressAccount"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
 </LinearLayout>

@@ -1,10 +1,12 @@
 package com.example.tech.Account;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -15,15 +17,21 @@ import android.widget.Toast;
 import com.example.tech.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginActivity extends AppCompatActivity {
 
-    FirebaseAuth mAuth;
-    Button btnLogin;
-    EditText etLoginEmail, etLoginLock;
-    TextView tvRegistrarse;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firebaseFirestore;
+
+    private Button btnLogin;
+    private EditText etLoginEmail, etLoginLock;
+    private TextView tvRegistrarse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         btnLogin = (Button)findViewById(R.id.btnLogin);
         etLoginEmail = (EditText)findViewById(R.id.etLoginEmail);
@@ -55,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Método para login de un Usuario o una Empresa.
     private void loginUsuario() {
-        String email = etLoginEmail.getText().toString().trim();
+        final String email = etLoginEmail.getText().toString().trim();
         String password = etLoginLock.getText().toString().trim();
 
         // Si no ha puesto bien o está vacío el email, lo notificamos.
@@ -90,11 +99,70 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(LoginActivity.this,  PrimerLoginUsuarioActivity.class));
+
+                    // Recorremos todos los Usuarios y/o Empresas, para comprobar si el Login es Usuario o Empresa.
+                    // USUARIOS.
+                    firebaseFirestore.collection("Usuarios")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            if (document.get("email").toString().equalsIgnoreCase(email)) {
+
+                                                // Si es PRIMER LOGIN, lo mandamos a PrimerLoginUsuarioActivity.
+                                                if ((Boolean) document.get("bAux") == false) {
+                                                    // Paso el ID del Usuario.
+                                                    Intent intent = new Intent(LoginActivity.this,  PrimerLoginUsuarioActivity.class);
+                                                    String UsId = document.getId();
+                                                    intent.putExtra("UsuarioId", UsId);
+                                                    startActivity(intent);
+                                                    //startActivity(new Intent(LoginActivity.this,  PrimerLoginUsuarioActivity.class));
+                                                } else {
+                                                    Log.d("USUARIO", document.getId() + " => " + document.get("email"));
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        Log.w("ERROR", "Error getting documents.", task.getException());
+                                    }
+                                }
+                            });
+
+                    // EMPRESAS.
+                    firebaseFirestore.collection("Empresas")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            if (document.get("email").toString().equalsIgnoreCase(email)) {
+
+                                                // Si es PRIMER LOGIN, lo mandamos a PrimerLoginEmpresaActivity.
+                                                if ((Boolean) document.get("bAux") == false) {
+                                                    // Paso el ID de la Empresa.
+                                                    Intent intent = new Intent(LoginActivity.this,  PrimerLoginEmpresaActivity.class);
+                                                    String EmpId = document.getId();
+                                                    intent.putExtra("EmpresaId", EmpId);
+                                                    startActivity(intent);
+
+                                                } else {
+                                                    Log.d("EMPRESA", document.getId() + " => " + document.get("email"));
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        Log.w("ERROR", "Error getting documents.", task.getException());
+                                    }
+                                }
+                            });
                 } else {
                     Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrecta.", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
     }
 }
