@@ -1,12 +1,11 @@
 package com.example.tech.UsuarioBasico;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.example.tech.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.tech.UsuarioBasico.ui.perfil.GalleryFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -20,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 public class UsuarioMainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    String UsuarioId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +32,19 @@ public class UsuarioMainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_perfil, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        UsuarioId = getIntent().getExtras().getString("UsuarioId");
+        GalleryFragment galleryFragment = new GalleryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("UserId", UsuarioId);
+        galleryFragment.setArguments(bundle);
+        Toast.makeText(UsuarioMainActivity.this, UsuarioId, Toast.LENGTH_LONG).show();
     }
 
     @Override

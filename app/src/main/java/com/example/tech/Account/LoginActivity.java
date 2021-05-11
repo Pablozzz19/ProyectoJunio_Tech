@@ -113,15 +113,16 @@ public class LoginActivity extends AppCompatActivity {
                                             if (document.get("email").toString().equalsIgnoreCase(email)) {
 
                                                 // Si es PRIMER LOGIN, lo mandamos a PrimerLoginUsuarioActivity.
+                                                String UsId = document.getId();
                                                 if ((Boolean) document.get("bAux") == false) {
                                                     // Paso el ID del Usuario.
                                                     Intent intent = new Intent(LoginActivity.this,  PrimerLoginUsuarioActivity.class);
-                                                    String UsId = document.getId();
                                                     intent.putExtra("UsuarioId", UsId);
                                                     startActivity(intent);
                                                     //startActivity(new Intent(LoginActivity.this,  PrimerLoginUsuarioActivity.class));
                                                 } else {
                                                     Intent intent = new Intent(LoginActivity.this, UsuarioMainActivity.class);
+                                                    intent.putExtra("UsuarioId", UsId);
                                                     startActivity(intent);
                                                     Log.d("USUARIO", document.getId() + " => " + document.get("email"));
                                                 }

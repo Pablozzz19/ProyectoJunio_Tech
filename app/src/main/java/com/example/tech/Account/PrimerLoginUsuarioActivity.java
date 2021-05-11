@@ -3,6 +3,7 @@ package com.example.tech.Account;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tech.R;
+import com.example.tech.UsuarioBasico.UsuarioMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -118,7 +120,10 @@ public class PrimerLoginUsuarioActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(PrimerLoginUsuarioActivity.this, "Bien", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(PrimerLoginUsuarioActivity.this, UsuarioMainActivity.class);
+                        intent.putExtra("UsuarioId", UsuarioId);
+                        startActivity(intent);
+                        //Toast.makeText(PrimerLoginUsuarioActivity.this, "Bien", Toast.LENGTH_LONG).show();
                     }
                 });
     }
