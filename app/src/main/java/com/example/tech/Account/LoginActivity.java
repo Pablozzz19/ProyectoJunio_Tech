@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tech.R;
+import com.example.tech.UsuarioBasico.UsuarioMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButtonToggleGroup;
@@ -120,6 +121,8 @@ public class LoginActivity extends AppCompatActivity {
                                                     startActivity(intent);
                                                     //startActivity(new Intent(LoginActivity.this,  PrimerLoginUsuarioActivity.class));
                                                 } else {
+                                                    Intent intent = new Intent(LoginActivity.this, UsuarioMainActivity.class);
+                                                    startActivity(intent);
                                                     Log.d("USUARIO", document.getId() + " => " + document.get("email"));
                                                 }
                                             }
