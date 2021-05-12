@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.example.tech.Clases.Usuario;
 import com.example.tech.R;
 import com.example.tech.UsuarioBasico.ui.perfil.GalleryFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -39,12 +40,12 @@ public class UsuarioMainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        UsuarioId = getIntent().getExtras().getString("UsuarioId");
-        GalleryFragment galleryFragment = new GalleryFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("UserId", UsuarioId);
-        galleryFragment.setArguments(bundle);
-        Toast.makeText(UsuarioMainActivity.this, UsuarioId, Toast.LENGTH_LONG).show();
+
+//        Bundle bundle = new Bundle();
+//        bundle.putString("UserId", UsuarioId);
+//        GalleryFragment galleryFragment = new GalleryFragment();
+//        galleryFragment.setArguments(bundle);
+//        Toast.makeText(UsuarioMainActivity.this, bundle.getString("UserId"), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -59,5 +60,10 @@ public class UsuarioMainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public String getUsuarioId() {
+        UsuarioId = getIntent().getExtras().getString("UsuarioId");
+        return UsuarioId;
     }
 }

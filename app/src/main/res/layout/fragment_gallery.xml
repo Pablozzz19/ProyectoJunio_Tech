@@ -40,6 +40,8 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tvUserNombre"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nombre"
@@ -47,7 +49,9 @@
                     android:textSize="30dp"/>
 
                 <TextView
+                    android:id="@+id/tvUserApellido"
                     android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Apellidos"
@@ -57,8 +61,10 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tvUserDescripcion"
                 android:gravity="center"
                 android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Esto es una descripción del Perfil."
@@ -84,6 +90,7 @@
             android:textSize="15dp"/>
 
         <TextView
+            android:id="@+id/tvUserEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="usuario@gmail.com"
@@ -103,6 +110,7 @@
             android:textSize="15dp"/>
 
         <TextView
+            android:id="@+id/tvUserTelefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="678824445"
@@ -122,6 +130,7 @@
             android:textSize="15dp"/>
 
         <TextView
+            android:id="@+id/tvUserFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="25/06/2000"
