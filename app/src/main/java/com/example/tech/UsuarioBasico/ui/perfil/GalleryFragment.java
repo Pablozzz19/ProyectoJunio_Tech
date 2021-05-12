@@ -1,10 +1,12 @@
 package com.example.tech.UsuarioBasico.ui.perfil;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,25 +19,33 @@ import com.example.tech.Account.CrearCuentaActivity;
 import com.example.tech.R;
 import com.example.tech.UsuarioBasico.UsuarioMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class GalleryFragment extends Fragment {
 
     private FirebaseFirestore firebaseFirestore;
+    private StorageReference storageReference;
 
-    TextView tvUserNombre, tvUserApellido, tvUserDescripcion, tvUserEmail, tvUserTelefono, tvUserFecha;
+    private ImageView ivFotoUser;
+    private TextView tvUserNombre, tvUserApellido, tvUserDescripcion, tvUserEmail, tvUserTelefono, tvUserFecha;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
+        ivFotoUser = (ImageView) root.findViewById(R.id.ivFotoUser);
         tvUserNombre = (TextView) root.findViewById(R.id.tvUserNombre);
         tvUserApellido = (TextView) root.findViewById(R.id.tvUserApellido);
         tvUserDescripcion = (TextView) root.findViewById(R.id.tvUserDescripcion);
@@ -44,6 +54,15 @@ public class GalleryFragment extends Fragment {
         tvUserFecha = (TextView) root.findViewById(R.id.tvUserFecha);
 
         UsuarioMainActivity usuarioMainActivity = (UsuarioMainActivity) getActivity();
+
+        StorageReference profileRef = storageReference.child("usuarios/" + usuarioMainActivity.getUsuarioId() + "/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(getContext()).load(uri).into(ivFotoUser);
+            }
+        });
+
         final DocumentReference documentReference = firebaseFirestore.collection("Usuarios").document(usuarioMainActivity.getUsuarioId());
         documentReference.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
             @Override

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:background="@drawable/tech"
+                android:id="@+id/ivFotoUser"
                 android:layout_gravity="center"
                 android:layout_width="100dp"
                 android:layout_height="100dp"/>

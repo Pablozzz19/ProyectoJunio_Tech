@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -56,6 +57,8 @@ public class PrimerLoginUsuarioActivity extends AppCompatActivity {
         etCrearTelefono = (EditText) findViewById(R.id.etCrearTelefono);
         etCrearDescripcion = (EditText) findViewById(R.id.etCrearDescripcion);
         ivCrearFotoUser = (ImageView) findViewById(R.id.ivCrearFotoUser);
+
+        UsuarioId = getIntent().getExtras().getString("UsuarioId");
 
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("CEST"));
         calendar.clear();
@@ -104,7 +107,7 @@ public class PrimerLoginUsuarioActivity extends AppCompatActivity {
         if (requestCode == 1000) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri uri = data.getData();
-                ivCrearFotoUser.setImageURI(uri);
+                //ivCrearFotoUser.setImageURI(uri);
                 
                 uploadImageToFirebase(uri);
             }
@@ -112,11 +115,16 @@ public class PrimerLoginUsuarioActivity extends AppCompatActivity {
     }
 
     private void uploadImageToFirebase(Uri uri) {
-        StorageReference fileRef = storageReference.child("profile.jpg");
+        final StorageReference fileRef = storageReference.child("usuarios/" + UsuarioId + "/profile.jpg");
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(PrimerLoginUsuarioActivity.this, "Imagen Actualizada", Toast.LENGTH_LONG).show();
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.with(PrimerLoginUsuarioActivity.this).load(uri).into(ivCrearFotoUser);
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -160,7 +168,6 @@ public class PrimerLoginUsuarioActivity extends AppCompatActivity {
             return;
         }
 
-        UsuarioId = getIntent().getExtras().getString("UsuarioId");
         firebaseFirestore.collection("Usuarios").document(UsuarioId)
                 .update("apellidos", apellidos,
                         "bAux", true,
