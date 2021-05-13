@@ -2,11 +2,8 @@ package com.example.tech.UsuarioBasico;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.Toast;
 
-import com.example.tech.Clases.Usuario;
 import com.example.tech.R;
-import com.example.tech.UsuarioBasico.ui.perfil.GalleryFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
