@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UsuarioBasico.ui.home.HomeFragment">
+    tools:context=".UsuarioBasico.ui.home.HomeFragment"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-    <TextView
-        android:id="@+id/tvPrueba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nombre"
-        android:textSize="30dp"/>
+    <ImageView
+        android:background="@drawable/tech"
+        android:layout_width="350dp"
+        android:layout_height="350dp"/>
 
 </LinearLayout>

@@ -16,14 +16,9 @@ import com.example.tech.R;
 
 public class HomeFragment extends Fragment {
 
-    TextView tvPrueba;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        tvPrueba = (TextView) root.findViewById(R.id.tvPrueba);
-        tvPrueba.setText("AAAAAA");
 
         return root;
     }
