@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tech.Empresa.EmpresaMainActivity;
 import com.example.tech.R;
 import com.example.tech.UsuarioBasico.UsuarioMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -145,14 +146,17 @@ public class LoginActivity extends AppCompatActivity {
                                             if (document.get("email").toString().equalsIgnoreCase(email)) {
 
                                                 // Si es PRIMER LOGIN, lo mandamos a PrimerLoginEmpresaActivity.
+                                                String EmpId = document.getId();
                                                 if ((Boolean) document.get("bAux") == false) {
                                                     // Paso el ID de la Empresa.
                                                     Intent intent = new Intent(LoginActivity.this,  PrimerLoginEmpresaActivity.class);
-                                                    String EmpId = document.getId();
                                                     intent.putExtra("EmpresaId", EmpId);
                                                     startActivity(intent);
 
                                                 } else {
+                                                    Intent intent = new Intent(LoginActivity.this, EmpresaMainActivity.class);
+                                                    intent.putExtra("EmpresaId", EmpId);
+                                                    startActivity(intent);
                                                     Log.d("EMPRESA", document.getId() + " => " + document.get("email"));
                                                 }
                                             }

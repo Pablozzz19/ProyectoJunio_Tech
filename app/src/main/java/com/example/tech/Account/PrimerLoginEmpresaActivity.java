@@ -3,13 +3,16 @@ package com.example.tech.Account;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.tech.Empresa.EmpresaMainActivity;
 import com.example.tech.R;
+import com.example.tech.UsuarioBasico.UsuarioMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,6 +38,8 @@ public class PrimerLoginEmpresaActivity extends AppCompatActivity {
         etCrearTelefonoEmp = (EditText) findViewById(R.id.etCrearTelefonoEmp);
         etCrearEmpleadosEmp = (EditText) findViewById(R.id.etCrearEmpleadosEmp);
         etCrearDescripcionEmp = (EditText) findViewById(R.id.etCrearDescripcionEmp);
+
+        EmpresaId = getIntent().getExtras().getString("EmpresaId");
 
         btnComenzarEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +83,6 @@ public class PrimerLoginEmpresaActivity extends AppCompatActivity {
             return;
         }
 
-        EmpresaId = getIntent().getExtras().getString("EmpresaId");
         firebaseFirestore.collection("Empresas").document(EmpresaId)
                 .update("bAux", true,
                         "descripcion", descripcion,
@@ -89,7 +93,10 @@ public class PrimerLoginEmpresaActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(PrimerLoginEmpresaActivity.this, "Bien", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(PrimerLoginEmpresaActivity.this, EmpresaMainActivity.class);
+                intent.putExtra("EmpresaId", EmpresaId);
+                startActivity(intent);
+                //Toast.makeText(PrimerLoginEmpresaActivity.this, "Bien", Toast.LENGTH_LONG).show();
             }
         });
     }

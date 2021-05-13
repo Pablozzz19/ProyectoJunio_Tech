@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Empresa.EmpresaMainActivity"
+            android:label="@string/title_activity_empresa_main"/>
+        <activity
             android:name=".UsuarioBasico.UsuarioMainActivity"
             android:label="@string/title_activity_usuario_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Account.PrimerLoginEmpresaActivity" />
         <activity android:name=".Account.PrimerLoginUsuarioActivity" />
         <activity android:name=".Account.CrearCuentaActivity" />
