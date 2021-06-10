@@ -3,6 +3,7 @@ package com.example.tech.UsuarioBasico.ui.perfil;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,13 +27,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 public class PerfilFragment extends Fragment {
 
     private FirebaseFirestore firebaseFirestore;
     private StorageReference storageReference;
 
     private ImageView ivFotoUser;
-    private TextView tvUserNombre, tvUserApellido, tvUserDescripcion, tvUserEmail, tvUserTelefono, tvUserFecha;
+    private TextView tvUserNombre, tvUserApellido, tvUserDescripcion, tvUserEmail, tvUserTelefono, tvUserFecha, tvLenguaje;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class PerfilFragment extends Fragment {
         tvUserEmail = (TextView) root.findViewById(R.id.tvUserEmail);
         tvUserTelefono = (TextView) root.findViewById(R.id.tvUserTelefono);
         tvUserFecha = (TextView) root.findViewById(R.id.tvUserFecha);
+        tvLenguaje = (TextView) root.findViewById(R.id.tvLenguaje);
 
         UsuarioMainActivity usuarioMainActivity = (UsuarioMainActivity) getActivity();
 
@@ -69,6 +73,14 @@ public class PerfilFragment extends Fragment {
                 tvUserEmail.setText(value.getString("email"));
                 tvUserTelefono.setText(value.getString("telefono"));
                 tvUserFecha.setText(value.getString("fechaNacimiento"));
+                List<String> list = (List<String>) value.get("lenguaje");
+                Log.i("lista", list.toString());
+                String lenguaje = "";
+                for (String s : list) {
+                    lenguaje = lenguaje + " " + s;
+                }
+                tvLenguaje.setText(lenguaje.substring(1));
+                //tvLenguaje.setText(value.getString("lenguaje"));
             }
         });
         //Toast.makeText(getContext(), usuarioMainActivity.getUsuarioId(), Toast.LENGTH_LONG).show();

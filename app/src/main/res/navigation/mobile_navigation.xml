@@ -18,8 +18,20 @@
         tools:layout="@layout/fragment_perfil" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.tech.UsuarioBasico.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_ajustes"
+        android:name="com.example.tech.UsuarioBasico.ui.ajustes.AjustesFragment"
+        android:label="@string/menu_ajustes"
+        tools:layout="@layout/fragment_ajustes" />
+
+    <fragment
+        android:id="@+id/nav_retos"
+        android:name="com.example.tech.UsuarioBasico.ui.retos.RetosFragment"
+        android:label="@string/menu_retos"
+        tools:layout="@layout/fragment_retos" />
+
+    <fragment
+        android:id="@+id/nav_agenda"
+        android:name="com.example.tech.UsuarioBasico.ui.empresas.EmpresasFragment"
+        android:label="@string/menu_agenda"
+        tools:layout="@layout/fragment_empresas" />
 </navigation>

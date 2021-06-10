@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +17,12 @@ import com.example.tech.Clases.Empresa;
 import com.example.tech.Clases.Usuario;
 import com.example.tech.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -58,9 +61,32 @@ public class CrearCuentaActivity extends AppCompatActivity {
         btnCrearCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrarUsuario();
+                //if (!comprobarEmail()) {
+                    registrarUsuario();
+                //}
             }
         });
+    }
+
+    // Método para comprobar que el Usuario o la Empresa no está registrada.
+    private boolean comprobarEmail() {
+        final boolean[] existeEmail = new boolean[1];
+        mAuth.fetchSignInMethodsForEmail(etCrearEmail.getText().toString().trim())
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        boolean existe = !task.getResult().getSignInMethods().isEmpty();
+
+                        if (existe) {
+                            Toast.makeText(CrearCuentaActivity.this, "Este Email ya está registrado.", Toast.LENGTH_LONG).show();
+                            progressAccount.setVisibility(View.GONE);
+                            existeEmail[0] = true;
+                        } else {
+                            existeEmail[0] = false;
+                        }
+                    }
+                });
+        return existeEmail[0];
     }
 
     // Método para registrar un Usuario o una Empresa.
@@ -118,6 +144,10 @@ public class CrearCuentaActivity extends AppCompatActivity {
                                     mUsuario.put("fechaNacimiento", null);
                                     mUsuario.put("telefono", null);
                                     mUsuario.put("descripcion", null);
+                                    mUsuario.put("lenguaje", null);
+                                    mUsuario.put("psw", etCrearLock.getText().toString());
+                                    Log.i("password", etCrearLock.getText().toString());
+                                    mUsuario.put("urlImage", null);
                                     documentReference.set(mUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -142,6 +172,8 @@ public class CrearCuentaActivity extends AppCompatActivity {
                                     mEmpresa.put("telefono", null);
                                     mEmpresa.put("nroEmpleados", null);
                                     mEmpresa.put("descripcion", null);
+                                    mEmpresa.put("psw", etCrearLock.getText().toString());
+                                    mEmpresa.put("urlImage", null);
                                     documentReference.set(mEmpresa).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -159,7 +191,13 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
                             }
                         }
-                    });
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(CrearCuentaActivity.this, "Este Email ya está registrado.", Toast.LENGTH_LONG).show();
+                    progressAccount.setVisibility(View.GONE);
+                }
+            });
         } else {
             Toast.makeText(CrearCuentaActivity.this, "ERROR. Por favor elija un el tipo de cuenta.", Toast.LENGTH_LONG).show();
         }

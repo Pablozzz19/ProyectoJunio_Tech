@@ -54,5 +54,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
     compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }
