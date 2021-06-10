@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Empresa.ui.perfil.PerfilEmpresaFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/custom_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivFotoEmpresa"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:civ_border_width="3dp"
+                app:civ_border_color="#FFFFFF"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvEmpresaNombre"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvEmpresaDescripcion"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Esto es una descripción del Perfil."
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/tvEmpresaEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="usuario@gmail.com"
+            android:textSize="20dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teléfeno"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/tvEmpresaTelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="678824445"
+            android:textSize="20dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número de Empleados"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/tvEmpresaEmpleados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4000"
+            android:textSize="20dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sede"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/tvEmpresaSede"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="España"
+            android:textSize="20dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/darker_gray"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

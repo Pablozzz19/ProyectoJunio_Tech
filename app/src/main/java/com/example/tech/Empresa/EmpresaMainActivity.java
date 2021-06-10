@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 
 public class EmpresaMainActivity extends AppCompatActivity {
 
+    private String EmpresaId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,4 +29,8 @@ public class EmpresaMainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    public String getEmpresaId() {
+        EmpresaId = getIntent().getExtras().getString("EmpresaId");
+        return EmpresaId;
+    }
 }

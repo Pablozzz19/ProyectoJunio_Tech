@@ -1,43 +1,21 @@
 package com.example.tech.Clases;
 
+import java.util.List;
+
 public class Usuario {
 
-    private boolean uBAux;
-    private int uFoto;
     private String apellidos;
+    private boolean bAux;
     private String descripcion;
     public String email;
     private String fechaNacimiento;
-    private String lenguaje;
+    private List lenguaje;
     private String nombre;
+    private String psw;
     private String telefono;
+    private String urlImage;
 
     public Usuario() {
-    }
-
-    /*public Usuario(String email) {
-        this.email = email;
-    }*/
-
-    /*public Usuario(int uFoto, String uApellidos, String uDescripcion, String uNombre) {
-        this.uFoto = uFoto;
-        this.uApellidos = uApellidos;
-        this.uDescripcion = uDescripcion;
-        this.uNombre = uNombre;
-    }*/
-
-    /*public Usuario(String apellidos, String descripcion, String nombre) {
-        this.apellidos = apellidos;
-        this.descripcion = descripcion;
-        this.nombre = nombre;
-    }*/
-
-    public boolean isuBAux() {
-        return uBAux;
-    }
-
-    public void setuBAux(boolean uBAux) {
-        this.uBAux = uBAux;
     }
 
     public String getApellidos() {
@@ -46,6 +24,14 @@ public class Usuario {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public boolean isbAux() {
+        return bAux;
+    }
+
+    public void setbAux(boolean bAux) {
+        this.bAux = bAux;
     }
 
     public String getDescripcion() {
@@ -72,14 +58,6 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getLenguaje() {
-        return lenguaje;
-    }
-
-    public void setLenguaje(String lenguaje) {
-        this.lenguaje = lenguaje;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -88,11 +66,27 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getPsw() {
+        return psw;
+    }
+
+    public void setPsw(String psw) {
+        this.psw = psw;
+    }
+
     public String getTelefono() {
         return telefono;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

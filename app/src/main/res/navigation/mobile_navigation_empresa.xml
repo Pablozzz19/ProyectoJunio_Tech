@@ -13,14 +13,20 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.tech.Empresa.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.example.tech.Empresa.ui.perfil.PerfilEmpresaFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_perfil_empresa" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.tech.Empresa.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.example.tech.Empresa.ui.retos.RetosFragment"
+        android:label="Retos"
+        tools:layout="@layout/fragment_retos_empresas" />
+
+    <fragment
+        android:id="@+id/navigation_usuario"
+        android:name="com.example.tech.Empresa.ui.usuarios.UsuariosFragment"
+        android:label="Usuarios"
+        tools:layout="@layout/fragment_usuarios" />
 
 </navigation>
