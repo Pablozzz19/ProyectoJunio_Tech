@@ -89,4 +89,5 @@ public class Usuario {
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
     }
+
 }

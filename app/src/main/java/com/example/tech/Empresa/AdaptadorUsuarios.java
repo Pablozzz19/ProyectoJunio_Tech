@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.example.tech.Clases.Empresa;
 import com.example.tech.Clases.Usuario;
+import com.example.tech.Empresa.ui.usuarios.EmpresasUsuariosActivity;
 import com.example.tech.R;
 import com.example.tech.UsuarioBasico.ui.empresas.PerfilUsuarioEmpesaActivity;
 import com.squareup.picasso.Picasso;
@@ -44,20 +45,21 @@ public class AdaptadorUsuarios extends ArrayAdapter<Usuario> {
         tvLvDescripcionUsuario.setText(usuario.getDescripcion());
         Picasso.with(getContext()).load(usuario.getUrlImage()).into(ivLvFotoUsuario);
 
-        /*listitemView.setOnClickListener(new View.OnClickListener() {
+        listitemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PerfilUsuarioEmpesaActivity.class);
-                intent.putExtra("NombreEmpresa", empresa.getNombre());
-                intent.putExtra("DescripcionEmpresa", empresa.getDescripcion());
-                intent.putExtra("EmailEmpresa", empresa.getEmail());
-                intent.putExtra("TelefonoEmpresa", empresa.getTelefono());
-                intent.putExtra("EmpleadosEmpresa", empresa.getNroEmpleados());
-                intent.putExtra("SedeEmpresa", empresa.getSede());
-                intent.putExtra("ImagenEmpresa", empresa.getUrlImage());
+                Intent intent = new Intent(getContext(), EmpresasUsuariosActivity.class);
+                intent.putExtra("NombreUser", usuario.getNombre());
+                intent.putExtra("ApellidosUser", usuario.getApellidos());
+                intent.putExtra("DescripcionUser", usuario.getDescripcion());
+                intent.putExtra("EmailUser", usuario.getEmail());
+                intent.putExtra("TelefonoUser", usuario.getTelefono());
+                intent.putExtra("FechaUser", usuario.getFechaNacimiento());
+                intent.putExtra("LenguajeUser", "Java");
+                intent.putExtra("ImagenUser", usuario.getUrlImage());
                 getContext().startActivity(intent);
             }
-        });*/
+        });
 
         return listitemView;
     }
